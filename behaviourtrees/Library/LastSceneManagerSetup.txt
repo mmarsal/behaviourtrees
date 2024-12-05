@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/_Creepy_Cat/_3D Scifi Kit Starter Kit_HD/Level.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
