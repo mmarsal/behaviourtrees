@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Behavior Designer
+  m_Title: Console
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 45
+  controlID: 80
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -96,8 +96,8 @@ MonoBehaviour:
     y: 0
     width: 289.59998
     height: 431.2
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 46
+  controlID: 76
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: BehaviorDesignerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -247,16 +247,16 @@ MonoBehaviour:
     y: 0
     width: 1072.8
     height: 431.2
-  m_MinSize: {x: 202, y: 221}
+  m_MinSize: {x: 702, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 17}
   - {fileID: 11}
-  m_Selected: 2
-  m_LastSelected: 3
+  m_Selected: 3
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -306,7 +306,7 @@ MonoBehaviour:
   - {fileID: 0}
   mBehaviorSourceHistoryIndex: 8
   mLockInstanceID: 0
-  mIsPlaying: 1
+  mIsPlaying: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -425,9 +425,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6ebd0000
-      m_LastClickedID: 48494
-      m_ExpandedIDs: a6ccffff78be0000
+      m_SelectedIDs: 927e0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 32faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -494,9 +494,9 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 1
-    m_SearchArea: 1
+    m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/_Creepy_Cat/_3D Scifi Kit Starter Kit_HD
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -504,16 +504,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 69
   m_LastFolders:
-  - Assets
+  - Assets/_Creepy_Cat/_3D Scifi Kit Starter Kit_HD
   m_LastFoldersGridSize: 69
   m_LastProjectPath: C:\Users\Martin\Unity\behaviourtrees\behaviourtrees
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ccd20000
-    m_LastClickedID: 53964
-    m_ExpandedIDs: 0000000000ca9a3b
+    m_SelectedIDs: 1e800000
+    m_LastClickedID: 32798
+    m_ExpandedIDs: 00000000028000000480000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -541,7 +541,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ccd20000
+    m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -566,9 +566,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6ebd0000
-    m_LastClickedInstanceID: 48494
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 927e0000
+    m_LastClickedInstanceID: 32402
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300000a71000082eb00008aeb00005277000080f9040076d607006ea00000989d0000b21e0100be1e0100b81e01001e1f0100241f0100301f0100d01e0100d61e0100981a0100461b0100481e01002a1f01003c1e010066b40500b4210500
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1085,9 +1085,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 26.887411, y: -7.974132, z: -3.589004}
+    m_Target: {x: 27.455805, y: -8.731522, z: 0.5825407}
     speed: 2
-    m_Value: {x: 26.887411, y: -7.974132, z: -3.589004}
+    m_Value: {x: 27.455805, y: -8.731522, z: 0.5825407}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1133,9 +1133,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.13529058, y: 0.21723525, z: -0.030927526, w: -0.96634644}
+    m_Target: {x: -0.0901321, y: 0.5684384, z: -0.06341, w: -0.81549156}
     speed: 2
-    m_Value: {x: -0.13527188, y: 0.21720521, z: -0.03092325, w: -0.9662128}
+    m_Value: {x: -0.090118885, y: 0.5683551, z: -0.0634007, w: -0.815372}
   m_Size:
     m_Target: 0.8660254
     speed: 2
