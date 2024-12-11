@@ -921,6 +921,8 @@
 "Assets/Scripts/PlayerCam.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/Target.cs"
+"Assets/Scripts/Tasks/MoveAwayTask.cs"
+"Assets/Scripts/Tasks/StandStillTask.cs"
 "Assets/Scripts/Test.cs"
 "Assets/_Creepy_Cat/_3D Scifi Kit Starter Kit_HD/_Scripts/Turn_Move.cs"
 -langversion:9.0
