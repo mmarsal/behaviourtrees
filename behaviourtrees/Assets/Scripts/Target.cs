@@ -8,11 +8,24 @@ public class Target : MonoBehaviour
 
     public Image healthBar;
     public SharedTransform playerTransform;
+    private BehaviorTree behaviorTree;
 
     private void Start()
     {
         UpdateHealthBar();
         playerTransform.Value = GameObject.FindWithTag("Player").transform;
+
+        behaviorTree = GetComponent<BehaviorTree>();
+    }
+
+    private void Update()
+    {
+        if (health <= 1f)
+        {
+            behaviorTree.SendEvent<object>("Flee", 5);
+            RestoreHealth();
+            Invoke(nameof(RestoreHealth), 3f);
+        }
     }
 
     public void TakeDamage(float amount)

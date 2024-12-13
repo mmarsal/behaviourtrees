@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    private float damage = 10f;
+    private float damage = 50f;
     private float range = 100f;
 
     public Camera PlayerCam;
