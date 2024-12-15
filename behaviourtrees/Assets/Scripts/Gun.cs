@@ -1,4 +1,5 @@
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 public class Gun : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class Gun : MonoBehaviour
 
     [Header("Shooting Effects")]
     public ParticleSystem shootEffect; // Partikeleffekt für den Schuss
-    public AudioClip shootSound; // Soundclip für den Schuss
-    private AudioSource audioSource; // Audioquelle zum Abspielen des Sounds
-    public Transform gunTip;
+    public AudioClip shootSound;       // Soundclip für den Schuss
+    public Transform gunTip;           // Position am Gewehrlauf für den Mündungsfeuer-Effekt
     
+    public GameObject npcGameObject;
+
+    private AudioSource audioSource;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,18 +41,26 @@ public class Gun : MonoBehaviour
                 target.TakeDamage(damage);
             }
 
-            // Visuelle Effekte
-            if (shootEffect != null)
+            // Visuelle Effekte auslösen
+            if (shootEffect != null && gunTip != null)
             {
                 ParticleSystem effect = Instantiate(shootEffect, gunTip.position, gunTip.rotation);
-                effect.Play(); // Stelle sicher, dass der Effekt abgespielt wird
-                Destroy(effect.gameObject, effect.main.duration); // Zerstöre den Effekt nach seiner Dauer
+                effect.Play();
+                Destroy(effect.gameObject, effect.main.duration); 
             }
-
-            // Soundeffekt
+            
             if (shootSound != null)
             {
                 audioSource.PlayOneShot(shootSound);
+                BehaviorTree behaviorTree = npcGameObject.GetComponent<BehaviorTree>();
+
+                if (behaviorTree != null)
+                {
+                    Vector3 noisePosition = hit.point;
+                    behaviorTree.SetVariableValue("noisePosition", noisePosition);
+                    behaviorTree.SendEvent("NoiseHeardEvent");
+                    Debug.LogWarning("Sound bekommen!");
+                }
             }
         }
     }

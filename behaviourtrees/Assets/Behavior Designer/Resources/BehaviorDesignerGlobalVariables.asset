@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"playerTransform","IsShared":true,"IsGlobal":true,"TransformmValue":0}]}'
+    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"playerTransform","IsShared":true,"IsGlobal":true,"TransformmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"noisePosition","IsShared":true,"IsGlobal":true,"Vector3mValue":"(0,0,0)"}]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 
