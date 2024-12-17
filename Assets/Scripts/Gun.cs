@@ -5,6 +5,9 @@ public class Gun : MonoBehaviour
 {
     private float damage = 50f;
     private float range = 100f;
+    private float cooldown = 1f;
+
+    private float lastShootTime = 0f;
 
     public Camera PlayerCam;
 
@@ -24,14 +27,21 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetButtonDown("Fire1") && !Input.GetKey(KeyCode.LeftControl) && CanShoot())
         {
             Shoot();
         }
     }
 
+    private bool CanShoot()
+    {
+        return Time.time - lastShootTime > cooldown;
+    }
+
     private void Shoot()
     {
+        lastShootTime = Time.time;
+
         RaycastHit hit;
         if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.forward, out hit, range))
         {

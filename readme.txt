@@ -1,6 +1,9 @@
 Alien: https://assetstore.unity.com/packages/3d/characters/creatures/alien-different-skins-and-glowing-sword-215878
 SCIFI Map: https://assetstore.unity.com/packages/3d/environments/3d-scifi-kit-starter-kit-92152
 Standard Assets: ILIAS
+Unsichtbar Sound: https://www.youtube.com/watch?v=IlzdKMg5ZEA
+Sichtbar Sound: https://www.youtube.com/watch?v=SfrJ5QRAMOk
+Deagle Sound: https://www.youtube.com/watch?v=1OYgYQNMnMo
 
 Troubleshooting:
 Falls das Projekt nach dem Klonen/Entpacken Fehler wirft, einmal das
