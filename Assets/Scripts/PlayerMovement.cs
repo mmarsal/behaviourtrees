@@ -63,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
     public bool unlimited;
     public bool restricted;
 
+    [Header("Hiding")]
+    public LayerMask whatIsHidespot;
+    public bool hiding;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -78,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        hiding = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsHidespot);
 
         MyInput();
         SpeedControl();
