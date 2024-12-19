@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     public ParticleSystem shootEffect; // Partikeleffekt für den Schuss
     public AudioClip shootSound;       // Soundclip für den Schuss
     public Transform gunTip;           // Position am Gewehrlauf für den Mündungsfeuer-Effekt
-    
+
     public GameObject npcGameObject;
 
     private AudioSource audioSource;
@@ -56,9 +56,9 @@ public class Gun : MonoBehaviour
             {
                 ParticleSystem effect = Instantiate(shootEffect, gunTip.position, gunTip.rotation);
                 effect.Play();
-                Destroy(effect.gameObject, effect.main.duration); 
+                Destroy(effect.gameObject, effect.main.duration);
             }
-            
+
             if (shootSound != null)
             {
                 audioSource.PlayOneShot(shootSound);
@@ -66,7 +66,7 @@ public class Gun : MonoBehaviour
 
                 if (behaviorTree != null)
                 {
-                    Vector3 noisePosition = hit.point;
+                    Vector3 noisePosition = gameObject.transform.position;
                     behaviorTree.SetVariableValue("noisePosition", noisePosition);
                     behaviorTree.SendEvent("NoiseHeardEvent");
                     Debug.LogWarning("Sound bekommen!");
