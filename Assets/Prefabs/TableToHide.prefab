@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504415258686475987}
   - component: {fileID: 504415258696850899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504415258686475993}
   - component: {fileID: 504415258696850905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504415258686475997}
   - component: {fileID: 504415258696850909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504415258686475999}
   - component: {fileID: 504415258696850911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504415258686482019}
   - component: {fileID: 6125468300092636128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Table_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 504415258686482029}
   - component: {fileID: 504415258689873485}
   - component: {fileID: 504415258688382989}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Table_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 7357645205830911374}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Plane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -633,7 +633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938512772322874085}
   - component: {fileID: 8844237547165798700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Table_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 938512772322874091}
   - component: {fileID: 938512772319974091}
   - component: {fileID: 938512772320976011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Table_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938512772322884181}
   - component: {fileID: 938512772329253205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,7 +868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938512772322884185}
   - component: {fileID: 938512772329253209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938512772322884187}
   - component: {fileID: 938512772329253211}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938512772322884191}
   - component: {fileID: 938512772329253215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593879361825660169}
   - component: {fileID: 1679485646137033065}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TableToHide
   m_TagString: Untagged
   m_Icon: {fileID: 0}

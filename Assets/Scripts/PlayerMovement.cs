@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Hiding")]
     public LayerMask whatIsHidespot;
     public bool hiding;
+    public bool exposed = false;
+    private Hidespot hidespotScript;
 
     void Start()
     {
@@ -83,11 +85,38 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        hiding = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsHidespot);
+        hiding = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.2f, whatIsHidespot);
+        if (exposed) {
+            hiding = false;
+        }
+        if (hiding)
+        {
+            GameObject hitObject = hit.collider.gameObject;
+
+            if (hitObject != null)
+            {
+                hidespotScript = hitObject.GetComponent<Hidespot>();
+                if (hidespotScript != null)
+                {
+                    hidespotScript.playerIsHiding = true;
+                }
+            }
+            else
+            {
+                Debug.Log("The hit object does not have a parent.");
+            }
+        }
+        else
+        {
+            if (hidespotScript != null)
+            {
+                hidespotScript.playerIsHiding = false;
+            }
+        }
 
         MyInput();
         SpeedControl();
-        StateHandler(); 
+        StateHandler();
     }
 
     public void PlayHitSound(AudioClip hitSound)

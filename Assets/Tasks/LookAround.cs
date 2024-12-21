@@ -8,7 +8,7 @@ public class LookAround : Action
 
     public override void OnStart()
     {
-        rotationGoal = Random.Range(-45f, 45f); // Zufällige Rotation
+        rotationGoal = Random.Range(0f, 90f); // Zufällige Rotation
     }
 
     public override TaskStatus OnUpdate()
