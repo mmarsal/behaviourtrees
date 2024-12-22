@@ -9,38 +9,67 @@ public class HidespotsLearner : Action
     private PlayerMovement playerScript;
     public float range = 5.0f;      // The range to check against
     private BehaviorTree behaviorTree;
+    private Rigidbody alienRb;
+
+    private float lastExecutionTime = -Mathf.Infinity; // Tracks the last execution time
+    public float cooldown = 5f; // Cooldown duration in seconds
+    public bool patrolling; // If Custom Node is being used for patroling or for looking around
 
     public override void OnStart()
     {
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<PlayerMovement>();
         behaviorTree = GetComponent<BehaviorTree>();
+        alienRb = behaviorTree.GetComponent<Rigidbody>();
     }
 
     public override TaskStatus OnUpdate()
     {
-        // Calculate the distance between the alien and the player
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        // Check if the distance is within the range
-        if (distance <= range && playerScript.hiding)
+        // Check if cooldown period has elapsed
+        if (Time.time - lastExecutionTime < cooldown && patrolling)
         {
-            Debug.Log("Target is hiding within range!");
-            // Get the current value of the variable "hidespotslearned"
-            SharedInt hidespotsLearned = behaviorTree.GetVariable("hidespotsLearned") as SharedInt;
-
-            // Increment the value by 1
-            hidespotsLearned.Value += 1;
-
-            // Set the updated value back into the variable
-            behaviorTree.SetVariableValue("hidespotsLearned", hidespotsLearned);
-
-            return TaskStatus.Success;
+            return TaskStatus.Running;
         }
-        else
+
+        if (alienRb != null)
         {
-            Debug.Log("Target is out of range or not hiding.");
-            return TaskStatus.Success;
+            Vector3 velocity = alienRb.velocity;
+
+            // Check if x and z components of velocity are zero
+            if (Mathf.Approximately(velocity.x, 0f) && Mathf.Approximately(velocity.z, 0f))
+            {
+                // Update the last execution time
+                lastExecutionTime = Time.time;
+
+                // Calculate the distance between the alien and the player
+                float distance = Vector3.Distance(transform.position, player.transform.position);
+
+                // Check if the distance is within the range and player is hiding
+                if (distance <= range && playerScript.hiding)
+                {
+                    Debug.Log("Target is hiding within range!");
+
+                    // Increment the value of "hidespotsLearned"
+                    SharedInt hidespotsLearned = behaviorTree.GetVariable("hidespotsLearned") as SharedInt;
+                    hidespotsLearned.Value += 1;
+                    behaviorTree.SetVariableValue("hidespotsLearned", hidespotsLearned);
+
+                    return TaskStatus.Success;
+                }
+                else
+                {
+                    Debug.Log("Target is out of range or not hiding.");
+                    return patrolling ? TaskStatus.Running : TaskStatus.Success;
+                }
+            }
+            else
+            {
+                return TaskStatus.Running;
+            }
         }
+
+        Debug.LogError("Alien Rigidbody is null.");
+        return TaskStatus.Failure;
     }
+
 }

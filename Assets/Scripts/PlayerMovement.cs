@@ -1,4 +1,5 @@
 using System.Collections;
+using BehaviorDesigner.Runtime;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -68,9 +69,14 @@ public class PlayerMovement : MonoBehaviour
     public bool hiding;
     public bool exposed = false;
     private Hidespot hidespotScript;
+    private GameObject alien;
+    private BehaviorTree behaviorTree;
 
     void Start()
     {
+        alien = GameObject.Find("AIThirdPersonController");
+        behaviorTree = alien.GetComponent<BehaviorTree>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
@@ -86,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         hiding = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.2f, whatIsHidespot);
-        if (exposed) {
+        behaviorTree.SetVariableValue("playerIsHiding", hiding);
+        if (exposed)
+        {
             hiding = false;
         }
         if (hiding)
