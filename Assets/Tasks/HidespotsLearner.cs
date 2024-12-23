@@ -53,8 +53,7 @@ public class HidespotsLearner : Action
                     SharedInt hidespotsLearned = behaviorTree.GetVariable("hidespotsLearned") as SharedInt;
                     hidespotsLearned.Value += 1;
                     behaviorTree.SetVariableValue("hidespotsLearned", hidespotsLearned);
-
-                    return TaskStatus.Success;
+                    return patrolling ? hidespotsLearned.Value >= 2 ? TaskStatus.Success : TaskStatus.Running : TaskStatus.Success;
                 }
                 else
                 {
