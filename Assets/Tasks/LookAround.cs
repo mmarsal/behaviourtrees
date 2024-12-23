@@ -3,23 +3,33 @@ using UnityEngine;
 
 public class LookAround : Action
 {
-    public float rotationSpeed = 30f; // Drehgeschwindigkeit
+    public float rotationSpeed = 30f; // Turn speed
     private float rotationGoal;
+    private float currentRotation;
 
     public override void OnStart()
     {
-        rotationGoal = Random.Range(0f, 90f); // Zufällige Rotation
+        rotationGoal = Random.Range(-45f, 45f); // Random rotation
+        currentRotation = 0f; // Track how much we've rotated
     }
 
     public override TaskStatus OnUpdate()
     {
         float step = rotationSpeed * Time.deltaTime;
-        transform.Rotate(0, step, 0);
 
-        if (Mathf.Abs(rotationGoal) <= step)
+        // Determine rotation direction
+        float rotationStep = Mathf.Sign(rotationGoal) * step;
+
+        // Apply the rotation
+        transform.Rotate(0, rotationStep, 0);
+        currentRotation += rotationStep;
+
+        // Check if we've reached or surpassed the rotation goal
+        if (Mathf.Abs(currentRotation) >= Mathf.Abs(rotationGoal))
+        {
             return TaskStatus.Success;
+        }
 
-        rotationGoal -= step;
         return TaskStatus.Running;
     }
 }
