@@ -5,8 +5,8 @@ using UnityEngine;
 public class DetectPlayerThroughPortal : Conditional
 {
     public SharedBool IsPlayerThroughPortal;
-    public SharedGameObject Player;
-    private bool teleported = false;
+    public SharedGameObject Player; // Spieler als Shared Variable
+    public SharedGameObject LastUsedPortal; // Letztes verwendetes Portal
 
     public override void OnStart()
     {
@@ -19,34 +19,20 @@ public class DetectPlayerThroughPortal : Conditional
         if (Player == null || Player.Value == null)
         {
             Debug.LogWarning("Player-Referenz ist nicht gesetzt.");
-            return;
         }
 
-        // Abonniere das Teleportations-Event
-        Portal.OnTeleported += HandleTeleport;
-    }
-
-    public override void OnEnd()
-    {
-        // Abonniere das Teleportations-Event nicht weiter, um Speicherlecks zu vermeiden
-        Portal.OnTeleported -= HandleTeleport;
-    }
-
-    private void HandleTeleport(GameObject obj)
-    {
-        if (obj == Player.Value)
-        {
-            teleported = true;
-            IsPlayerThroughPortal.Value = true;
-            Debug.Log("Player wurde durch ein Portal teleportiert.");
-        }
+        // Starte ohne Teleportation
+        PortalTracker.Instance.ResetTeleportFlag();
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (teleported)
+        if (PortalTracker.Instance.PlayerTeleported)
         {
-            teleported = false;
+            IsPlayerThroughPortal.Value = true;
+            LastUsedPortal.Value = PortalTracker.Instance.LastUsedPortal;
+            PortalTracker.Instance.ResetTeleportFlag();
+            Debug.Log($"Player wurde durch ein Portal teleportiert: {LastUsedPortal.Value.name}");
             return TaskStatus.Success;
         }
 

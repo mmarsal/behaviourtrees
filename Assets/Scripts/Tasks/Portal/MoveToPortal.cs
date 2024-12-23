@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class MoveToPortal : Action
 {
-    public SharedGameObject CurrentPortal;
+    public SharedGameObject LastUsedPortal; // Referenz zum zuletzt verwendeten Portal
+    public SharedGameObject CurrentPortal;   // Zielportal, zu dem das Alien laufen soll
 
     private NavMeshAgent agent;
 
@@ -15,6 +16,25 @@ public class MoveToPortal : Action
         if (agent == null)
         {
             Debug.LogWarning("NavMeshAgent nicht gefunden.");
+            return;
+        }
+
+        if (LastUsedPortal == null || LastUsedPortal.Value == null)
+        {
+            Debug.LogWarning("LastUsedPortal ist nicht zugewiesen.");
+            return;
+        }
+
+        // Setze CurrentPortal auf das verknüpfte Portal des LastUsedPortal
+        Portal portalComponent = LastUsedPortal.Value.GetComponent<Portal>();
+        if (portalComponent != null && portalComponent.linkedPortal != null)
+        {
+            CurrentPortal.Value = portalComponent.linkedPortal.gameObject;
+            Debug.Log($"CurrentPortal gesetzt auf: {CurrentPortal.Value.name}");
+        }
+        else
+        {
+            Debug.LogWarning("Verknüpftes Portal nicht gefunden.");
         }
     }
 
