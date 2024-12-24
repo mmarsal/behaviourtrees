@@ -12,6 +12,8 @@ public class PortalTracker : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // Optional: Verhindern, dass das Objekt beim Laden einer neuen Szene zerstört wird
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -21,14 +23,12 @@ public class PortalTracker : MonoBehaviour
 
     public void PlayerHasTeleported(GameObject portal)
     {
-        Debug.Log("Player has teleported through a portal.");
         PlayerTeleported = true;
         LastUsedPortal = portal;
     }
 
     public void ResetTeleportFlag()
     {
-        Debug.Log("Resetting teleport flag.");
         PlayerTeleported = false;
         LastUsedPortal = null;
     }

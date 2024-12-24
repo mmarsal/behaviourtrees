@@ -5,33 +5,60 @@ using UnityEngine;
 public class ChooseBestAction : Action
 {
     public SharedBool UsePortal;
+    public SharedGameObject LastUsedPortal; // Letztes verwendetes Portal
     public SharedGameObject PortalA;
     public SharedGameObject PortalB;
     public SharedGameObject Player;
-    public float teleportCooldown = 5f;
 
     private float lastTeleportTime = -Mathf.Infinity;
 
+    public override void OnStart()
+    {
+        if (UsePortal == null)
+        {            
+            UsePortal = new SharedBool();
+            UsePortal.Value = false;
+        }
+    }
+
     public override TaskStatus OnUpdate()
     {
-        float distanceToPortalA = Vector3.Distance(Player.Value.transform.position, PortalA.Value.transform.position);
-        float distanceToPortalB = Vector3.Distance(Player.Value.transform.position, PortalB.Value.transform.position);
+        if (LastUsedPortal == null || LastUsedPortal.Value == null)
+        {
+            Debug.LogWarning("LastUsedPortal ist nicht zugewiesen.");
+            UsePortal.Value = false;
+            return TaskStatus.Success;
+        }
 
-        GameObject nearestPortal = distanceToPortalA < distanceToPortalB ? PortalA.Value : PortalB.Value;
+        // Bestimme das verknüpfte Portal
+        Portal portalComponent = LastUsedPortal.Value.GetComponent<Portal>();
+        if (portalComponent == null || portalComponent.linkedPortal == null)
+        {
+            Debug.LogWarning("Verknüpftes Portal nicht gefunden.");
+            UsePortal.Value = false;
+            return TaskStatus.Failure;
+        }
 
-        float distanceToNearestPortal = Vector3.Distance(this.transform.position, nearestPortal.transform.position);
-        float timeToWalk = distanceToNearestPortal / GetComponent<UnityEngine.AI.NavMeshAgent>().speed;
+        GameObject targetPortal = portalComponent.linkedPortal.gameObject;
 
-        float teleportTime = 1f;
+        // Berechne die Distanz zum Zielportal
+        float distanceToTargetPortal = Vector3.Distance(this.transform.position, targetPortal.transform.position);
 
-        if (teleportTime < timeToWalk && Time.time > lastTeleportTime + teleportCooldown)
+        // Entscheide, ob teleportieren schneller ist
+        float teleportThreshold = 20f; // Beispielwert, teleportieren wenn Portal weit entfernt ist
+        
+        Debug.Log($"Alien berechnet die Distanz zum Portal: {distanceToTargetPortal}");
+        
+        if (distanceToTargetPortal < teleportThreshold && Time.time > lastTeleportTime)
         {
             UsePortal.Value = true;
             lastTeleportTime = Time.time;
+            Debug.Log($"Alien entscheidet, das Portal zu teleportieren: {targetPortal.name}");
         }
         else
         {
             UsePortal.Value = false;
+            Debug.Log($"Alien entscheidet, nicht zu teleportieren. Distanz zum Portal: {distanceToTargetPortal}");
         }
 
         return TaskStatus.Success;

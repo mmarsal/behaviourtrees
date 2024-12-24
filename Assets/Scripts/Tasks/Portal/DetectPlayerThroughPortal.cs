@@ -20,13 +20,16 @@ public class DetectPlayerThroughPortal : Conditional
         {
             Debug.LogWarning("Player-Referenz ist nicht gesetzt.");
         }
-
-        // Starte ohne Teleportation
-        PortalTracker.Instance.ResetTeleportFlag();
     }
 
     public override TaskStatus OnUpdate()
     {
+        if (PortalTracker.Instance == null)
+        {
+            Debug.LogWarning("PortalTracker ist nicht vorhanden.");
+            return TaskStatus.Failure;
+        }
+
         if (PortalTracker.Instance.PlayerTeleported)
         {
             IsPlayerThroughPortal.Value = true;

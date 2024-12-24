@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class TeleportThroughPortal : Action
 {
-    public SharedGameObject LastUsedPortal; // Referenz zum zuletzt verwendeten Portal
+    public SharedGameObject LastUsedPortal; // Letztes verwendetes Portal
+    public float teleportRange = 2f; // Nähe zum Portal, bevor teleportiert wird
 
     private NavMeshAgent agent;
 
@@ -33,20 +34,31 @@ public class TeleportThroughPortal : Action
             return TaskStatus.Failure;
         }
 
-        // Teleportiere das Alien zum verknüpften Portal
-        Vector3 exitPosition = portalComponent.linkedPortal.transform.position + portalComponent.linkedPortal.transform.forward * 2f; // Offset, um direkt vor dem Portal zu erscheinen
+        Vector3 portalPosition = LastUsedPortal.Value.transform.position;
+        float distanceToPortal = Vector3.Distance(transform.position, portalPosition);
 
-        if (agent != null)
+        if (distanceToPortal <= teleportRange)
         {
-            agent.Warp(exitPosition); // Warping ist besser mit NavMeshAgent
+            // Teleportiere das Alien zum verknüpften Portal
+            Vector3 exitPosition = portalComponent.linkedPortal.transform.position + portalComponent.linkedPortal.transform.forward * 2f; // Offset, um direkt vor dem Portal zu erscheinen
+
+            if (agent != null)
+            {
+                agent.Warp(exitPosition); // Warping ist besser mit NavMeshAgent
+            }
+            else
+            {
+                transform.position = exitPosition;
+            }
+
+            Debug.Log($"Alien teleportiert zum verknüpften Portal: {portalComponent.linkedPortal.name}");
+
+            return TaskStatus.Success;
         }
         else
         {
-            this.transform.position = exitPosition;
+            Debug.Log($"Alien ist noch nicht am Portal. Distanz: {distanceToPortal}");
+            return TaskStatus.Failure;
         }
-
-        Debug.Log($"Alien teleportiert zum verknüpften Portal: {portalComponent.linkedPortal.name}");
-
-        return TaskStatus.Success;
     }
 }
