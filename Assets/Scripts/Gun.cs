@@ -4,8 +4,8 @@ using BehaviorDesigner.Runtime;
 public class Gun : MonoBehaviour
 {
     private float damage = 50f;
-    private float range = 100f;
-    private float cooldown = 1f;
+    private float range = 10f;
+    private float cooldown = 2f;
 
     private float lastShootTime = 0f;
 
@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour
         lastShootTime = Time.time;
 
         RaycastHit hit;
-        if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.forward, out hit, range))
+        if (Physics.SphereCast(PlayerCam.transform.position, 1f, PlayerCam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
@@ -55,8 +55,8 @@ public class Gun : MonoBehaviour
             if (shootEffect != null && gunTip != null)
             {
                 ParticleSystem effect = Instantiate(shootEffect, gunTip.position, gunTip.rotation);
+                effect.transform.parent = gunTip;
                 effect.Play();
-                Destroy(effect.gameObject, effect.main.duration);
             }
 
             if (shootSound != null)

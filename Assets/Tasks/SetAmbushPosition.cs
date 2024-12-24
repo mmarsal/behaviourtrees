@@ -1,31 +1,58 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SetAmbushPosition : Action
 {
     public SharedGameObjectList AmbushPoints;
     public SharedBool atAmbushPosition;
+    public float speed = 20f;
+
+    private NavMeshAgent agent;
+    
+    public override void OnStart()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent not found.");
+            return;
+        }
+
+        // Finde den nächsten Ambush-Point
+        GameObject selectedPoint = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (var point in AmbushPoints.Value)
+        {
+            float distance = Vector3.Distance(transform.position, point.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                selectedPoint = point;
+            }
+        }
+
+        if (selectedPoint == null)
+        {
+            Debug.LogError("No ambush point found.");
+            return;
+        }
+
+        // Setze das Ziel für den NavMeshAgent
+        agent.SetDestination(selectedPoint.transform.position);
+    }
 
     public override TaskStatus OnUpdate()
     {
-        if (AmbushPoints == null || AmbushPoints.Value.Count == 0)
+        // Wenn der Alien am Ziel ankommt, setze die Variable
+        if (Vector3.Distance(transform.position, agent.destination) < 0.1f)
         {
-            return TaskStatus.Failure;
+            atAmbushPosition.Value = true;
+            return TaskStatus.Success;
         }
 
-        // Wähle zufällig eine Ambush-Position
-        int index = Random.Range(0, AmbushPoints.Value.Count);
-        GameObject selectedPoint = AmbushPoints.Value[index];
-        Transform transformComponent = this.transform;
-
-        // Bewege den Alien zur Ambush-Position
-        transformComponent.position = selectedPoint.transform.position;
-        transformComponent.rotation = selectedPoint.transform.rotation;
-
-        // Setze die Variable
-        atAmbushPosition.Value = true;
-
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }
