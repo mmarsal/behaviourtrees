@@ -9,7 +9,7 @@ public class LookAround : Action
 
     public override void OnStart()
     {
-        rotationGoal = Random.Range(-45f, 45f); // Random rotation
+        rotationGoal = Random.Range(-75f, 75f); // Random rotation
         currentRotation = 0f; // Track how much we've rotated
     }
 
