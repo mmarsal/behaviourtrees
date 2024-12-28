@@ -7,7 +7,7 @@ public class HidespotsLearner : Action
 {
     private GameObject player;
     private PlayerMovement playerScript;
-    public float range = 5.0f;      // The range to check against
+    public float range = 7.5f;      // The range to check against
     private BehaviorTree behaviorTree;
     private Rigidbody alienRb;
 
