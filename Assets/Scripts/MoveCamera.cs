@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoceCamera : MonoBehaviour
+public class MoveCamera : MonoBehaviour
 {
     public Transform cameraPosition;
 

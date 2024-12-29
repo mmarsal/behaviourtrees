@@ -32,8 +32,11 @@ public class ChooseHidespot : Action
         // Loop through all the hidespots
         foreach (Collider hideSpot in hidespots)
         {
+            // Check the vertical difference (y position)
+            float heightDifference = Mathf.Abs(hideSpot.transform.position.y - transform.position.y);
+            
             // Check if the object is tagged as "Plane"
-            if (hideSpot.gameObject.CompareTag("Plane"))
+            if (hideSpot.gameObject.CompareTag("Plane") && heightDifference <= 1.0f)
             {
                 planes.Add(hideSpot.gameObject);
             }

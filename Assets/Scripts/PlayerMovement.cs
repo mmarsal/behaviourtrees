@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMuliplier;
     bool readyToJump;
+    public PlayerCam playerCamScript;
+    public GameManager gameManager;
 
     [Header("Crouching")]
     public float crouchSpeed;
@@ -96,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         if (exposed)
         {
             hiding = false;
+            behaviorTree.SetVariableValue("playerIsHiding", false);
         }
         if (hiding)
         {
@@ -122,9 +125,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        MyInput();
-        SpeedControl();
-        StateHandler();
+        if (!freeze)
+        {
+            MyInput();
+            SpeedControl();
+            StateHandler();
+        }
     }
 
     public void PlayHitSound(AudioClip hitSound)
@@ -295,5 +301,32 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    public void GameOver()
+    {
+        // Disable player movement and mouse input
+        freeze = true;
+        playerCamScript.enabled = false;
+
+        // Calculate the direction to the alien
+        Vector3 directionToAlien = (alien.transform.position - transform.position).normalized;
+
+        // Remove vertical component for horizontal rotation only
+        directionToAlien.y = 0;
+
+        // Check if the direction is valid (not zero)
+        if (directionToAlien != Vector3.zero)
+        {
+            // Smoothly rotate the player to face the alien
+            Quaternion targetRotation = Quaternion.LookRotation(directionToAlien);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
+
+        // Make the camera look a bit up
+        Vector3 targetCameraRotation = new(10f, playerCamScript.transform.localRotation.eulerAngles.y, 0f);
+        playerCamScript.transform.localRotation = Quaternion.Slerp(playerCamScript.transform.localRotation, Quaternion.Euler(targetCameraRotation), Time.deltaTime * 2f);
+
+        gameManager.GameOver();
     }
 }
