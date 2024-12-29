@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
     public Image healthBar;
     public SharedTransform playerTransform;
     private BehaviorTree behaviorTree;
+    public GameObject doppelganger;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class Target : MonoBehaviour
     {
         health = 100f;
         UpdateHealthBar();
+        doppelganger.SetActive(false);
     }
 
     private void UpdateHealthBar()
