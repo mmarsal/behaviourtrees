@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                timerText.text = "00:00";
                 timeRemaining = 0;
                 timerRunning = false;
                 TimerEnded();
