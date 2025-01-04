@@ -6,14 +6,12 @@ public class Target : MonoBehaviour
 {
     public float health = 1f;
 
-    public Image healthBar;
     public SharedTransform playerTransform;
     private BehaviorTree behaviorTree;
     public GameObject doppelganger;
 
     private void Start()
     {
-        UpdateHealthBar();
         playerTransform.Value = GameObject.FindWithTag("Player").transform;
 
         behaviorTree = GetComponent<BehaviorTree>();
@@ -32,18 +30,11 @@ public class Target : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        UpdateHealthBar();
     }
 
     public void RestoreHealth()
     {
         health = 100f;
-        UpdateHealthBar();
         doppelganger.SetActive(false);
-    }
-
-    private void UpdateHealthBar()
-    {
-        healthBar.fillAmount = health / 100f; // 100 max Gesundheit
     }
 }
