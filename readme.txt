@@ -4,6 +4,7 @@ Standard Assets: ILIAS
 Unsichtbar Sound: https://www.youtube.com/watch?v=IlzdKMg5ZEA
 Sichtbar Sound: https://www.youtube.com/watch?v=SfrJ5QRAMOk
 Flammen Sound: https://www.youtube.com/watch?v=LQ4Xg7NsbyM
+Ungefähre Spielerposition sound: https://www.youtube.com/watch?v=BmbM5B4NjxY
 
 Troubleshooting:
 Falls das Projekt nach dem Klonen/Entpacken Fehler wirft, einmal das
