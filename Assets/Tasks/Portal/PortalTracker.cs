@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime;
 using UnityEngine;
 
 public class PortalTracker : MonoBehaviour
@@ -6,6 +7,7 @@ public class PortalTracker : MonoBehaviour
 
     public bool PlayerTeleported = false;
     public GameObject LastUsedPortal = null;
+    public BehaviorTree behaviorTree;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class PortalTracker : MonoBehaviour
     {
         PlayerTeleported = true;
         LastUsedPortal = portal;
+        behaviorTree.SendEvent("PlayerTeleportedEvent");
     }
 
     public void ResetTeleportFlag()
