@@ -22,6 +22,13 @@ Space - Springen
 Ctrl - Ducken
 Linksklick - Flammenwerfer abfeuern
 
+Mit dem Flammenwerfer kann der Spieler sich das Alien für eine kurze
+Zeit vom Hals halten. Des Weiteren gibt es Tische, sogenannte Hidespots,
+unter denen sich der Spieler verstecken kann, allerdings nur für eine
+bestimmte Zeit, denn früher oder später fängt das Alien auch an dort
+nachzuschauen. Außerdem gibt es zwei Portale, zwischen denen der Spieler
+hin- und herteleportieren kann, was aber das Alien alarmiert.
+
 Das Alien wurde durch das Behavior Designer Asset umgesetzt und verfügt
 über eine Vielzahl von Fähigkeiten. Um diese einzusehen, muss man im
 Unity-Editor in der Mitte das Behavior Designer Fenster öffnen und oben
