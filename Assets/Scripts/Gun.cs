@@ -69,7 +69,6 @@ public class Gun : MonoBehaviour
                     Vector3 noisePosition = gameObject.transform.position;
                     behaviorTree.SetVariableValue("noisePosition", noisePosition);
                     behaviorTree.SendEvent("NoiseHeardEvent");
-                    Debug.LogWarning("Sound bekommen!");
                 }
             }
         }

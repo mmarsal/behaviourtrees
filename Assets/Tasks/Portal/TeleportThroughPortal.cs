@@ -13,26 +13,12 @@ public class TeleportThroughPortal : Action
     public override void OnStart()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (agent == null)
-        {
-            Debug.LogWarning("NavMeshAgent nicht gefunden.");
-        }
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (LastUsedPortal == null || LastUsedPortal.Value == null)
-        {
-            Debug.LogWarning("LastUsedPortal ist nicht zugewiesen.");
-            return TaskStatus.Failure;
-        }
 
         Portal portalComponent = LastUsedPortal.Value.GetComponent<Portal>();
-        if (portalComponent == null || portalComponent.linkedPortal == null)
-        {
-            Debug.LogWarning("Verknüpftes Portal nicht gefunden.");
-            return TaskStatus.Failure;
-        }
 
         Vector3 portalPosition = LastUsedPortal.Value.transform.position;
         float distanceToPortal = Vector3.Distance(transform.position, portalPosition);
@@ -51,13 +37,11 @@ public class TeleportThroughPortal : Action
                 transform.position = exitPosition;
             }
 
-            Debug.Log($"Alien teleportiert zum verknüpften Portal: {portalComponent.linkedPortal.name}");
 
             return TaskStatus.Success;
         }
         else
         {
-            Debug.Log($"Alien ist noch nicht am Portal. Distanz: {distanceToPortal}");
             return TaskStatus.Failure;
         }
     }

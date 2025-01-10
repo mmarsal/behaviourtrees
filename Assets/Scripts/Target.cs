@@ -4,8 +4,8 @@ using BehaviorDesigner.Runtime;
 
 public class Target : MonoBehaviour
 {
+    // ALien haut ab falls er getroffen wird
     public float health = 1f;
-
     public SharedTransform playerTransform;
     private BehaviorTree behaviorTree;
     public GameObject doppelganger;
@@ -13,7 +13,6 @@ public class Target : MonoBehaviour
     private void Start()
     {
         playerTransform.Value = GameObject.FindWithTag("Player").transform;
-
         behaviorTree = GetComponent<BehaviorTree>();
     }
 

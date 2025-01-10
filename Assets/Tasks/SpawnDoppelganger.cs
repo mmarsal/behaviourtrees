@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnDoppelganger : Action
 {
+    // spawned den Doppelgaenger
     public GameObject alien2;
     public SharedTransform spawnPosition;
     

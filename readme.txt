@@ -10,6 +10,9 @@ Survival Spiel von 2014, das bis heute für die KI des Antagonisten, das
 Alien, bekannt ist, welches auch durch Behaviour Trees realisiert wurde.
 Hier ein kurzer Clip, welcher einen kleinen Einblick in das Spiel gibt:
 https://youtu.be/YWD-3T0lCTs?si=cSB26YVD1HKEq5yL
+Als zusatz haben wir noch Elemente von Five Nights at Freddys implementiert,
+dass man eine gewisse Zeit hat die man überstehen muss, dass der Alien 
+versucht einen zu verfolgen und das man immer auf dem Hut sein muss.
 
 Unser Projekt spielt sich auf einem kleinen Raumschiff ab, wo ein Alien
 patrouilliert und alles tötet, was sich in den Weg stellt. Ziel ist es,
@@ -96,9 +99,11 @@ implementieren. Dadurch konnte man einen Einblick erhalten, wie komplex
 KI in Spielen wie Alien: Isolation eigentlich aufgebaut ist. Am meisten
 Zeit hat wahrscheinlich das Umsetzen der Custom Nodes gedauert, da man
 geschickt entscheiden muss, wann welcher TaskStatus zurückgegeben wird,
-damit der nächste Node korrekt ausgeführt wird. Es war ebenfalls
-herausfordern, dass alle Behavior sauber miteinander funktionieren und
-die Übergänge zwischen denen auch gut funktionieren. Manchmal war die
+damit der nächste Node korrekt ausgeführt wird. 
+Es war ebenfalls herausfordernd, dass alle Behavior sauber miteinander 
+funktionieren und die Übergänge zwischen denen auch gut funktionieren,
+deswegen haben wir auch öfters viele Behaviour deaktivieren müssen, um zu schauen
+ob einzelne oder zusammenspielende Tasks funktionieren. Manchmal war die
 geringe Menge an Dokumentation etwas mühsam, da selbst die offizielle an
 manchen Stellen etwas knapp gehalten ist.
 

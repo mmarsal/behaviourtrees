@@ -7,13 +7,13 @@ public class HidespotsLearner : Action
 {
     private GameObject player;
     private PlayerMovement playerScript;
-    public float range = 7.5f;      // The range to check against
+    public float range = 7.5f;
     private BehaviorTree behaviorTree;
     private Rigidbody alienRb;
 
-    private float lastExecutionTime = -Mathf.Infinity; // Tracks the last execution time
-    public float cooldown = 5f; // Cooldown duration in seconds
-    public bool patrolling; // If Custom Node is being used for patroling or for looking around
+    private float lastExecutionTime = -Mathf.Infinity;
+    public float cooldown = 5f;
+    public bool patrolling;
 
     public override void OnStart()
     {
@@ -25,7 +25,6 @@ public class HidespotsLearner : Action
 
     public override TaskStatus OnUpdate()
     {
-        // Check if cooldown period has elapsed
         if (Time.time - lastExecutionTime < cooldown && patrolling)
         {
             return TaskStatus.Running;
@@ -35,16 +34,11 @@ public class HidespotsLearner : Action
         {
             Vector3 velocity = alienRb.velocity;
 
-            // Check if x and z components of velocity are zero
+            // schauen ob x und z 0 sind
             if (Mathf.Approximately(velocity.x, 0f) && Mathf.Approximately(velocity.z, 0f))
             {
-                // Update the last execution time
                 lastExecutionTime = Time.time;
-
-                // Calculate the distance between the alien and the player
                 float distance = Vector3.Distance(transform.position, player.transform.position);
-
-                // Check if the distance is within the range and player is hiding
                 if (distance <= range && playerScript.hiding)
                 {
                     Debug.Log("Target is hiding within range!");
@@ -57,7 +51,6 @@ public class HidespotsLearner : Action
                 }
                 else
                 {
-                    Debug.Log("Target is out of range or not hiding.");
                     return patrolling ? TaskStatus.Running : TaskStatus.Success;
                 }
             }
@@ -66,8 +59,6 @@ public class HidespotsLearner : Action
                 return TaskStatus.Running;
             }
         }
-
-        Debug.LogError("Alien Rigidbody is null.");
         return TaskStatus.Failure;
     }
 

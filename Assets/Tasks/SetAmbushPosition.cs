@@ -34,19 +34,11 @@ public class SetAmbushPosition : Action
             }
         }
 
-        if (selectedPoint == null)
-        {
-            Debug.LogError("No ambush point found.");
-            return;
-        }
-
-        // Setze das Ziel für den NavMeshAgent
         agent.SetDestination(selectedPoint.transform.position);
     }
 
     public override TaskStatus OnUpdate()
     {
-        // Wenn der Alien am Ziel ankommt, setze die Variable
         if (Vector3.Distance(transform.position, agent.destination) < 0.1f)
         {
             atAmbushPosition.Value = true;

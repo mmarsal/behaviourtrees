@@ -26,15 +26,12 @@ public class GetFleePoint : Action
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 
-        // Calculate paths
         agent.CalculatePath(objectA.Value.transform.position, pathA);
         agent.CalculatePath(objectB.Value.transform.position, pathB);
 
-        // Compare path lengths
         float distanceA = GetPathLength(pathA);
         float distanceB = GetPathLength(pathB);
 
-        // Assign the further object
         behaviorTree.SetVariableValue("furtherFleePoint", distanceA > distanceB ? objectA.Value : objectB.Value);
 
         return TaskStatus.Success;

@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [Header("UI Panels")]
-    public GameObject gameOverUI; // Lose UI
-    public GameObject winnerUI;   // Winner UI
+    public GameObject gameOverUI;
+    public GameObject winnerUI;
 
     [Header("Timer Settings")]
-    public float timeRemaining = 180f; // Zeitlimit in Sekunden
+    public float timeRemaining = 180f;
     public TextMeshProUGUI timerText;
     private bool timerRunning = true;
 
@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Überprüfe, ob eines der Endgame-UI aktiviert ist
         if (winnerUI.activeSelf || gameOverUI.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Return)) // Überprüfe, ob Enter gedrückt wurde

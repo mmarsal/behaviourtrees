@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    // Spieler sieht schwarz
     public Image blackoutImage;
     private bool isBlackout = false;
 

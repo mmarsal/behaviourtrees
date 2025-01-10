@@ -14,8 +14,6 @@ public class PortalTracker : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // Optional: Verhindern, dass das Objekt beim Laden einer neuen Szene zerstört wird
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
