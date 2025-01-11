@@ -57,7 +57,8 @@ kurz und macht sich dann unsichtbar, um den Spieler anzugreifen. Bevor
 es dies tut, wird noch eine Sache überprüft, nämlich ob es vor dem
 Angriff aus eine der Flankenpositionen angreifen soll, welche wir über
 die Map verteilt gesetzt haben, um zum Beispiel dem Spieler den Weg
-abschneiden zu können.
+abschneiden zu können. Falls das Alien die letzte bekannte Position des
+Spielers kennt, führt es die Jagd fort und läuft dorthin.
 4. Portale: Auf der Map gibt es zwei Portale, zwischen welchen man sich
 hin- und her teleportieren kann. Falls der Spieler durch ein solches
 durchläuft, kriegt das Alien das mit und entscheidet dann, ob es
@@ -65,10 +66,7 @@ schlauer wäre auch durch das Portal zu laufen, oder direkt zum anderen
 Portal zu laufen.
 5. Geräusche: Falls der Spieler seinen Flammenwerfer abfeuert, kriegt
 das Alien das mit und läuft zur Position, wo er abgefeuert wurde.
-6. Letzte bekannte Position: Falls das Alien die letzte bekannte
-Position des Spielers kennt, läuft es dort hin und greift bei
-Sichtkontakt an.
-7. Fallback: Obwohl es sich hier nur um das Fallback handelt, passiert
+6. Fallback: Obwohl es sich hier nur um das Fallback handelt, passiert
 hier sehr viel. Zunächst wird durch den Random Selector zufällig eine
 von drei Events ausgelöst: Die Sicht des Spielers wird für einige
 Sekunden beeinträchtigt, ein Doppelgänger wird auf der Map gespawnt (der
