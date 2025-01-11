@@ -29,6 +29,7 @@ public class CheckHidespot : Action
         Debug.Log("IS HIDING:" + hidespotScript.playerIsHiding);
         if (hidespotScript.playerIsHiding) {
             playerScript.exposed = true;
+            behaviorTree.SetVariableValue("playerExposed", true);
             behaviorTree.SetVariableValue("playerIsHiding", false);
             return TaskStatus.Success;
         } else {
