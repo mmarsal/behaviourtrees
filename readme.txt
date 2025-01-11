@@ -10,13 +10,12 @@ Survival Spiel von 2014, das bis heute für die KI des Antagonisten, das
 Alien, bekannt ist, welches auch durch Behaviour Trees realisiert wurde.
 Hier ein kurzer Clip, welcher einen kleinen Einblick in das Spiel gibt:
 https://youtu.be/YWD-3T0lCTs?si=cSB26YVD1HKEq5yL
-Als zusatz haben wir noch Elemente von Five Nights at Freddys implementiert,
-dass man eine gewisse Zeit hat die man überstehen muss, dass der Alien 
-versucht einen zu verfolgen und das man immer auf dem Hut sein muss.
 
 Unser Projekt spielt sich auf einem kleinen Raumschiff ab, wo ein Alien
 patrouilliert und alles tötet, was sich in den Weg stellt. Ziel ist es,
-drei Minuten auf dem Raumschiff zu überleben.
+drei Minuten auf dem Raumschiff zu überleben. Kleine Inspiration davon
+kommt von Five Nights at Freddy's, wo man auch für eine gewisse Zeit
+die Nacht überleben muss.
 
 Die Steuerung lautet wie folgt:
 WASD - Bewegen
@@ -35,21 +34,21 @@ hin- und herteleportieren kann, was aber das Alien alarmiert.
 Das Alien wurde durch das Behavior Designer Asset umgesetzt und verfügt
 über eine Vielzahl von Fähigkeiten. Um diese einzusehen, muss man im
 Unity-Editor in der Mitte das Behavior Designer Fenster öffnen und oben
-"AIThirdPersonController" auswählen. Nun sieht man den Behavior Tree des
+"AIThirdPersonController" auswählen. Nun sieht man den Behaviour Tree des
 Aliens.
-Der Behavior Tree funktioniert recht simpel: Zum Start des Spiels wird
-von links nach rechts jedes Behavior überprüft und ausgeführt. Falls
-keines der Behavior links ausgeführt wird, fällt es in das Fallback-
-Behavior ganz rechts. Falls doch später etwas weiter links im Tree
+Der Behaviour Tree funktioniert recht simpel: Zum Start des Spiels wird
+von links nach rechts jedes Behaviour überprüft und ausgeführt. Falls
+keines der Behaviour links ausgeführt wird, fällt es in das Fallback-
+Behaviour ganz rechts. Falls doch später etwas weiter links im Tree
 getriggert wird, wird dieses ausgeführt, da Nodes weiter links im Tree
 eine höhere Priorität haben. Alle Custom Tasks, die wir erstellt haben,
 befinden sich im Tasks-Ordner. Die Hauptszene befindet sich in
 "Assets/_Creepy_Cat/_3D Scifi Kit Starter Kit_HD/Level.unity".
 
-Betrachten wir die einzelnen Behavior des Aliens von links nach rechts:
+Betrachten wir die einzelnen Behaviour des Aliens von links nach rechts:
 1. Fliehen: Falls das Alien vom Flammenwerfer getroffen wird, flieht es
 zu einem von zwei Punkten auf der Map, um sich zu heilen. Dies hat die
-höchste Priorität: Das heißt, dass während dieses Behavior ausgeführt
+höchste Priorität: Das heißt, dass während dieses Behaviour ausgeführt
 wird, kann kein anderes es unterbrechen.
 2. Töten: Falls das Alien sich nah genug am Spieler befindet und er sich
 nicht versteckt, töten es den Spieler und das Spiel ist vorbei.
@@ -73,7 +72,7 @@ Sichtkontakt an.
 hier sehr viel. Zunächst wird durch den Random Selector zufällig eine
 von drei Events ausgelöst: Die Sicht des Spielers wird für einige
 Sekunden beeinträchtigt, ein Doppelgänger wird auf der Map gespawnt (der
-Doppelgänger hat ebenfalls einen Behavior Tree, aber in sehr simpler
+Doppelgänger hat ebenfalls einen Behaviour Tree, aber in sehr simpler
 Form), welcher einen nicht töten, aber hindern kann oder das Alien
 begibt sich in eine der Ambush-Positionen, die wir auf der Map verteilt
 haben, wo es für eine Zeit wartet und angreift, falls der Spieler
@@ -100,12 +99,13 @@ KI in Spielen wie Alien: Isolation eigentlich aufgebaut ist. Am meisten
 Zeit hat wahrscheinlich das Umsetzen der Custom Nodes gedauert, da man
 geschickt entscheiden muss, wann welcher TaskStatus zurückgegeben wird,
 damit der nächste Node korrekt ausgeführt wird. 
-Es war ebenfalls herausfordernd, dass alle Behavior sauber miteinander 
-funktionieren und die Übergänge zwischen denen auch gut funktionieren,
-deswegen haben wir auch öfters viele Behaviour deaktivieren müssen, um zu schauen
-ob einzelne oder zusammenspielende Tasks funktionieren. Manchmal war die
-geringe Menge an Dokumentation etwas mühsam, da selbst die offizielle an
-manchen Stellen etwas knapp gehalten ist.
+Es war ebenfalls herausfordernd sicherzustellen, dass alle Behaviours
+sauber miteinander funktionieren und die Übergänge zwischen diesen auch
+gut funktionieren. Deswegen haben wir auch öfters viele Behaviour
+deaktivieren müssen, um zu schauen, ob einzelne oder zusammenspielende
+Tasks funktionieren. Manchmal war die geringe Menge an Dokumentation
+etwas mühsam, da selbst die offizielle an manchen Stellen etwas knapp
+gehalten ist.
 
 Verwendete externe Assets:
 - Behavior Designer: Vom Dozenten übergeben
