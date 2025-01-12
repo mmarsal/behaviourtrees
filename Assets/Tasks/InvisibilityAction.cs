@@ -32,14 +32,11 @@ public class InvisibilityAction : Action
 
     public override void OnStart()
     {
-        if (useProximitySound && hummingSound != null && playerTransform.Value != null)
-        {
-            hummingSource = gameObject.AddComponent<AudioSource>();
-            hummingSource.clip = hummingSound;
-            hummingSource.loop = true;
-            hummingSource.volume = 0f;
-            hummingSource.playOnAwake = false;
-        }
+        hummingSource = gameObject.AddComponent<AudioSource>();
+        hummingSource.clip = hummingSound;
+        hummingSource.loop = true;
+        hummingSource.volume = 0f;
+        hummingSource.playOnAwake = false;
     }
 
     public override TaskStatus OnUpdate()
@@ -52,12 +49,12 @@ public class InvisibilityAction : Action
                 cooldownActive = false;
             }
         }
-
+        
         if (isInvisible)
         {
             invisibilityTimer -= Time.deltaTime;
-
-            if (useProximitySound && hummingSource != null && hummingSource.isPlaying)
+            // Spielen von Summen wenn True ist
+            if (useProximitySound && hummingSource.isPlaying)
             {
                 float distance = Vector3.Distance(transform.position, playerTransform.Value.position);
                 float t = Mathf.InverseLerp(maxDistance, 0f, distance);
@@ -69,12 +66,9 @@ public class InvisibilityAction : Action
             {
                 SetVisible(true);
                 isInvisible = false;
-                if (visibilitySound != null)
-                {
-                    audioSource.PlayOneShot(visibilitySound);
-                }
+                audioSource.PlayOneShot(visibilitySound);
 
-                if (useProximitySound && hummingSource != null && hummingSource.isPlaying)
+                if (useProximitySound && hummingSource.isPlaying)
                 {
                     hummingSource.Stop();
                 }
@@ -106,12 +100,9 @@ public class InvisibilityAction : Action
         isInvisible = true;
         invisibilityTimer = invisibilityDuration;
         SetVisible(false);
-        if (invisibilitySound != null)
-        {
-            audioSource.PlayOneShot(invisibilitySound);
-        }
+        audioSource.PlayOneShot(invisibilitySound);
 
-        if (useProximitySound && hummingSource != null && !hummingSource.isPlaying)
+        if (useProximitySound && !hummingSource.isPlaying)
         {
             hummingSource.Play();
         }

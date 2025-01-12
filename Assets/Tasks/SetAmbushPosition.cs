@@ -39,7 +39,7 @@ public class SetAmbushPosition : Action
 
     public override TaskStatus OnUpdate()
     {
-        if (Vector3.Distance(transform.position, agent.destination) < 0.1f)
+        if (Vector3.Distance(transform.position, agent.destination) < 1f)
         {
             atAmbushPosition.Value = true;
             return TaskStatus.Success;

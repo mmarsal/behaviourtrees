@@ -59,6 +59,7 @@ public class CheckIfFlankRouteIsBetter : Action
                 {
                     currentFlankPoint = closestFlankPoint;
                     Debug.Log("Bewege zu Flankpunkt");
+                    return TaskStatus.Success;
                 }
                 else
                 {
