@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private Hidespot hidespotScript;
     private GameObject alien;
     private BehaviorTree behaviorTree;
+    public BehaviorTree doppelgangerTree;
 
     void Start()
     {
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         hiding = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.2f, whatIsHidespot);
         behaviorTree.SetVariableValue("playerIsHiding", hiding);
+        doppelgangerTree.SetVariableValue("playerIsHiding", hiding);
         if (exposed)
         {
             hiding = false;
